@@ -1,0 +1,71 @@
+I'm currently taking CSS 430, Operating Systems, and it's a ton of fun. Prior to this I had plenty of
+experience with various Linux distros and only knew the raw basics of processes and threads, but now I've
+discovered a new appreciation for the operating systems we interact with each day.
+
+From the <a href="http://courses.washington.edu/css430/" target="_blank">course catalog</a>:
+
+    This course introduces the logical design of operating systems, especially focusing on the design in Java.
+    Topics covered include processes, threads, CPU scheduling, synchroization, deadlocks, memory management, virtual
+    memory, file systems, I/O systems, network programming, protection, and security used in the popular desktop and
+    real-time operating systems. Through the course, we will use Java to illustrate many operating-system concepts.
+    Using Java, you will implement each concept of process management, memory management, and file system.
+
+So far we've completed two projects.
+            
+The first was a simple exercise using a pipe to practice making unix system calls and doing some basic 
+<a href="https://en.wikipedia.org/wiki/Inter-process_communication" target="_blank">IPC</a>. This was accomplished with a single C++
+file, which when running is (ofcourse) a process. It uses <code>fork</code> to birth a duplicate child process, 
+which will run along side the parent with the program counter set to right after the fork call.
+
+From there, its a matter of using the process id returned from <code>fork</code> and setting up an if/else block. The parent will always
+wait for its child to respond with the goodies (its output), and children overwrite their process image with a new one using 
+<code>execlp</code> from the same header as fork. Each pipe has its unused file descriptors closed and its useful ones
+remapped from <code>STDIN</code> or <code>STDOUT</code> using <code>dup2</code> if applicable:
+
+#include ...
+...
+int main(int argc, char ** argv) {
+         ...
+         // open a pair of file descriptors for each side of pipe
+         enum { R, W }
+         int fd[2];
+         if(pipe(fdA) < 0) perror("*Error in creating first pipe!");
+
+         // fork a child, ensure success
+         if(forkcheck((pid = fork()) < 0)) return EXIT_FAILURE;
+        
+         // in child process
+         else if(pid == 0) {
+             // close unused side of pipe (R/W), as appropriate
+             close(fd[...]);
+             // map one side of pipe (R/W) to STDIN or STDOUT
+             dup2(fd[...], ...);
+             execlp("cmdPath", "cmd", "args", NULL);
+         }
+
+         // parent, wait for child response
+         else wait(...);
+
+Part II of this project was implementing the <code>&</code> and <code>;</code> delimiters in a simulated shell.
+Just like in bash, the ampersand will run a process without having bash wait on the process to exit. The semicolon,
+however, enforces bash blocking. Our shell supports single commands and chains, with homogeneous delimiters or
+mixed.
+
+The second project is a little more complicated. Our assignments in this course are based on something called
+<em>ThreadOS</em>, which is a Java-based program that simulates operating system functionality. The stock source
+for ThreadOS's thread scheduler was provided to us.
+            
+Our task was to create two variants, one implementing a strict 
+<a href="https://en.wikipedia.org/wiki/Round-robin_scheduling" target="_blank">Round Robin</a>
+policy and working up from there a
+<a href="https://en.wikipedia.org/wiki/Multilevel_feedback_queue" target="_blank">Multilevel Feedback Queue</a>. The logic to implement these was 
+done largely in the  <code>run()</code> method of each alternate scheduler java file, since scheduler (like most everything that works with ThreadOS)
+extends <em>Thread</em>.
+
+
+With only two out of five projects down, I've already learned a decent amount about what goes on under the hood in
+typical day-to-day OS tasks. It's neat knowing that ideas like these are implemented and running when I do quick and simple
+things like pipe something through grep in my terminal or simply switch between apps on my phone. It reminds not to take such
+amazing technology for granted.
+
+A.

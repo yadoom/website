@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<!-- BLOG / SCHEDULER
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../blog.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Blog > Timing is Everything: Thread Scheduler</title>
+
+</head>
+
+<body>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <span><a href="../">Blog</a></span>
+            <span class="chevron">&rsaquo;</span>
+            <span>Timing is Everything: Thread Scheduler</span>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <h1 class="page-header"></h1>
+        <br>
+        <span class="small"><span class="date">By <mark>Adam Ali</mark> on December 30, 2017</span></span>
+        <p class="lead">
+            Lots of threads, not as many processor cores. In this project for 430, we learned how to juggle multiple tasks concurrently within ThreadOS.<br><br>
+
+            From the <a href="http://courses.washington.edu/css430/prog/dimpsey/prog2.html" target="_blank">assignment page</a>:
+        </p>
+
+        <blockquote>
+            <p>
+                This assignment implements and compares two CPU scheduling algorithms, the round-robin scheduling and the multilevel feedback-queue scheduling. 
+                The step-by-step procedure to complete this assignment is:
+                <ol>
+                    <li>Observe the behavior of the ThreadOS Scheduler which uses a Java-based round-robin scheduling algorithm. Consider why it may not be working strictly in a round-robin fashion.</li>
+                    <li>Redesign the ThreadOS Scheduler using Thread.suspend() and Thread.resume() so that it will rigidly work in a round-robin fashion.</li>
+                    <li>Implement a multi-level feedback-queue scheduler for ThreadOS.</li>
+                    <li>Compare the rigid round-robin and multi-level feedback-queue schedulers using test thread programs.</li>
+                </ol>
+            </p>
+        </blockquote>
+
+        <p class="lead">
+            I've seen thread concurrency before in other programming courses, but never from the perspective of the operating system. Somehow, the kernel has to manage threads
+            (and processes) such that they can get CPU time. Given that most CPUs are at least single threaded dual cores, there is some flexibility with this but it's not
+            as if many threads can be run in true concurrency.<br><br>
+            
+            Therefore, tasks must be scheduled according to some kind of algorithm. There should at least be the impression of concurrency to the extent that the hardware allows,
+            since that is the software's intention. There are many scheduling algorithms, and often times when active tasks exceed the capacity of all cores, tasks get interleaved.
+            In otherwords, they pass CPU time back and forth between each other by means of interrupts, at a very fast rate, making it appear as though many tasks are making progress
+            at the same time.<br><br>
+
+            Like every project in 430, we are to develop a component of the ThreadOS system files. ThreadOS is virtual CLI OS that runs in the Java Virtual Machine and employs
+            many of the practices and structures of Unix. In this project, we develop two variants of <code>Scheduler</code>. One with 
+            <a href="https://en.wikipedia.org/wiki/Round-robin_scheduling" target="_blank">round-robin</a> and the other with
+            <a href="https://en.wikipedia.org/wiki/Multilevel_feedback_queue" target="_blank">a Multilevel Feedback Queue</a>.<br><br>
+
+            Here are lecture slides introducing the two:<br><br>
+
+            <img src="../../../assets/rr.png" alt="Round-robin">
+            <img src="../../../assets/mfq.png" alt="Multilevel Feedback Queue">
+
+            <br><br>
+
+            Put simply, RR will take threads as they arrive (queue) and assign them a pre-determined quantum. The quantum is milliseconds of CPU time. If the
+            thread terminates before its quantum has depleted, then the next thread in queue gets fresh quantum. However, if the quantum depletes and the thread
+            has not terminated, then the thread is preempted (execution paused) and placed at the tail of the queue. The next process gets fresh quantum.<br><br>
+
+            MFQ is an expansion on RR. MFQ has multiple queues, where the first queue is the highest priority but gives the least quantum. Lower queues give
+            more quantum, but with less priority. With this scheme, a thread that exceeds its quantum in queue 1 will be demoted to the head of queue 2. It
+            will not get its quantum until q1 is empty. The same goes for all further queues.<br><br>
+
+            We were given all of ThreadOS's ready components to implement these two algorithms. <code>Scheduler</code>, like everything in ThreadOS, is a thread
+            itself. It maintains its own bonafide queue that holds <code>TCB</code> objects, or Thread Control Blocks, which are links that allow for the 
+            suspending and resuming of various tasks running on ThreadOS.<br><br>
+
+            We were responsible only for the <code>Scheduler</code> logic. It is assumed that <code>Scheduler</code> will have its queue populated by <code>Kernel</code>, 
+            since it can call <code>Scheduler</code>'s public add method.<br><br>
+
+            The code below is pseudo as an academic precaution.<br><br>
+
+            RR was simple enough, roughly being implemented as follows:<br><br>
+
+<pre class="pre-scrollable">
+<code>run() {</code>
+<code>    ...</code>
+<code>    while(queue has TCBs)</code>
+<code>        get head TCB from queue</code>
+<code>        give quantum</code>
+<code>        if thread did not terminate</code>
+<code>        pause and demote to tail of queue</code>
+<code>    ...</code>
+<code>}</code>
+</pre>
+        <br>
+        </p>
+
+        <p class="lead">
+            MFQ was trickier. An queue array of size 3 was added, and mechanism that tracks thread priority's and support thread
+            demotion was needed:<br><br>
+
+<pre class="pre-scrollable">
+<code>run() {</code>
+<code>    ...</code>
+<code>    while(true)</code>
+<code>        if(nothing in any queues) continue;</code>
+<code>        if(queue at level is empty) moveDown();</code>
+<code></code>
+<code>        grab head TCB at current queue level</code>
+<code>        give current level quantum</code>
+<code>        if exceeded {</code>
+<code>            pause thread</code>
+<code>            save TCB to temp</code>
+<code>            delete TCB from current queue</code>
+<code>            if lower queue available, add temp TCB to tail of queue at level + 1</code>
+<code>            else just add to self queue at tail</code>
+<code>        }</code>
+<code>    ...</code>
+<code>}</code>
+</pre>
+        <br>
+        </p>
+
+        <p class="lead">
+            <img src="../../../assets/flowchart.png" alt="Scheduler Flowchart"><br><br>
+
+            The provided tests for these algorithms simply spawned a series of threads that would run concurrently. ThreadOS is set up to announce these
+            threads as they are receiving quantum, which can reveal whether or not the scheduler is exhibiting the appropriate behavior.<br><br>
+
+            The test outputs metrics like response time (from thread spawn to first quantum), turn around time (spawn to termination) and exec time.<br><br>
+
+            With my implementations, I got the following results:<br><br>   
+
+            <img src="../../../assets/table.png" alt="Scheduler Results">
+            <img src="../../../assets/averages.png" alt="Scheduler Averages"><br><br>
+
+            MFQ yeilds better performance because context switches are costly to the OS. Every preemption requires that a TCB have its state saved and moved.
+            Every time the OS is forced to demote a thread (and thus make a context switch), MFQ tries to reduce the chance of another expensive context 
+            switch by giving that long thread more quantum so that it can hopefully terminate on time.<br><br>
+
+            Variations of MFQ are in use by many people everyday, seen in Windows and OSX. I can only wonder how exciting it must have been to come up with 
+            these interesting solutions in the early days of computing.<br><br>
+
+            A.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../../../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>

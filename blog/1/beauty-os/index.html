@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<!-- BLOG / THE BEAUTY OF OPERATING SYSTEMS
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../blog.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Blog > The Beauty of Operating Systems</title>
+
+</head>
+
+<body>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <span><a href="../">Blog</a></span>
+            <span class="chevron">&rsaquo;</span>
+            <span>The Beauty of Operating Systems</span>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <h1 class="page-header"></h1>
+        <br>
+        <span class="small"><span class="date">By <mark>Adam Ali</mark> on November 9, 2017</span></span>
+        <p class="lead">
+            I'm currently taking CSS 430, Operating Systems, and it's a ton of fun. Prior to this I had plenty of experience with various Linux distros and only knew the raw basics of processes and threads, 
+            but now I've discovered a new appreciation for the operating systems we interact with each day.<br><br>
+            
+            From the <a href="http://courses.washington.edu/css430/" target="_blank">course catalog</a>:
+        </p>
+
+        <blockquote>
+            <p>
+                This course introduces the logical design of operating systems, especially focusing on the design in Java. Topics covered include processes, threads, CPU scheduling, synchronization, deadlocks,
+                memory management, virtual memory, file systems, I/O systems, network programming, protection, and security used in the popular desktop and real-time operating systems. Through the course, we will
+                use Java to illustrate many operating-system concepts. Using Java, you will implement each concept of process management, memory management, and file system.
+            </p>
+        </blockquote>
+
+        <p class="lead">
+            <br><br>So far we've completed two projects.<br><br>
+            
+            The first was a simple exercise using a pipe to practice making unix system calls and doing some basic <a href="https://en.wikipedia.org/wiki/Inter-process_communication" target="_blank">IPC</a>. This was accomplished with a single C++ file, 
+            which when running is (ofcourse) a process. It uses <code>fork</code> to birth a duplicate child process, which will run along side the parent with the program counter set to right after the fork call.<br><br>
+            
+            From there, its a matter of using the process id returned from <code>fork</code> and setting up an if/else block. The parent will always wait for its child to respond with the goodies (its output), and children overwrite their process image with a new one using
+            <code>execlp</code> from the same header as fork. Each pipe has its unused file descriptors closed and its useful ones remapped from <code>STDIN</code> or <code>STDOUT</code> using <code>dup2</code> if applicable:
+        </p>
+
+<pre class="pre-scrollable">
+<code>#include ...</code>
+<code>...</code>
+<code></code>
+<code>int main(int argc, char ** argv) {</code>
+<code>         ...</code>
+<code></code>
+<code class="cmt">          // open a pair of file descriptors for each side of pipe</code> 
+<code>          enum { R, W };</code>
+<code>          int fd[2];</code>
+<code>         if(pipe(fdA) < 0) perror("*Error in creating first pipe!");</code>
+<code></code>
+<code class="cmt">         // fork a child, ensure success</code>
+<code>         if(forkcheck((pid = fork()) < 0)) return EXIT_FAILURE;</code>
+<code></code>
+<code class="cmt">         // in child process</code>
+<code>         else if(pid == 0) {</code>
+<code></code>
+<code class="cmt">              // close unused side of pipe (R/W), as appropriate</code>
+<code>              close(fd[...]);</code> 
+<code></code>
+<code class="cmt">              // map one side of pipe (R/W) to STDIN or STDOUT</code>
+<code>              dup2(fd[...], ...);</code> 
+<code></code>
+<code class="cmt">              // overwrite process image with desire command</code>
+<code>              execlp("cmdPath", "cmd", "args", NULL);</code> 
+<code></code>
+<code>         }</code>
+<code></code>
+<code class="cmt">         // parent, wait for child response</code>
+<code>         else wait(...);</code>
+<code>}</code>
+</pre>
+
+        <p class="lead">
+            Part II of this project was implementing the <code>&</code> and <code>;</code> delimiters in a simulated shell. Just like in bash, the ampersand will run a process without having bash wait on the process to exit. 
+            The semicolon, however, enforces bash blocking. Our shell supports single commands and chains, with homogeneous delimiters or mixed.<br><br>
+            
+            The second project is a little more complicated. Our assignments in this course are based on something called <em>ThreadOS</em>, which is a Java-based program that simulates operating system functionality.
+            The stock source for ThreadOS's thread scheduler was provided to us.<br><br>
+            
+            Our task was to create two variants, one implementing a strict
+            <a href="https://en.wikipedia.org/wiki/Round-robin_scheduling" target="_blank">Round Robin</a> policy and working up from there a
+            <a href="https://en.wikipedia.org/wiki/Multilevel_feedback_queue" target="_blank">Multilevel Feedback Queue</a>. The logic to implement these was done largely in the
+            <code>run()</code> method of each alternate scheduler java file, since scheduler (like most everything that works with ThreadOS) extends <em>Thread</em>.<br><br>
+
+            With only two out of five projects down, I've already learned a decent amount about what goes on under the hood in typical day-to-day OS tasks. It's neat knowing that ideas like these are implemented and running when
+            I do quick and simple things like pipe something through grep in my terminal or simply switch between apps on my phone. It reminds not to take such amazing technology for granted.<br><br>
+            
+            A.
+        </p>
+
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../../../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>

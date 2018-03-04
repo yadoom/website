@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<!-- BLOG / FILE SYSTEM FUN
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../blog.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Blog > File System Fun</title>
+
+</head>
+
+<body>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <span><a href="../">Blog</a></span>
+            <span class="chevron">&rsaquo;</span>
+            <span>File System Fun</span>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <h1 class="page-header"></h1>
+        <br>
+        <span class="small"><span class="date">By <mark>Adam Ali</mark> on December 30, 2017</span></span>
+        <p class="lead">
+            Our final project for CSS 430 Operating Systems was to design and develop the file system for ThreadOS, a virtual CLI OS built on Java. It was challenging, fun and as usual in this course made me appreciate the 
+            low level operations that hum away to make computing possible.<br><br>
+            
+            From the <a href="http://courses.washington.edu/css430/prog/dimpsey/finalproject.html" target="_blank">assignment page</a>:
+        </p>
+        <blockquote>
+            <p>
+                In this project, you will build a Unix-like file system on the ThreadOS. Through the use of the file system, user programs will now be able to access persistent data on disk by way of stream-oriented files
+                rather than the more painful direct access to disk blocks with <code>rawread()</code> and <code>rawrite()</code>.
+            </p>
+        </blockquote>
+        <p class="lead">
+            Many aspects of ThreadOS are designed to emulate Unix as far as underlying implementation. The "disk" in this case is simply a serialized file sitting in the root ThreadOS directory, <code>DISK</code>. Up until now, 
+            any need for disk operation in our projects would read/write from the disk file raw, by hitting disk blocks directly.<br><br>
+            
+            This project is significantly larger than the previous ones, even against assignments in other courses. The documentation is considerable, relatively, and not just because there happened to be more files.<br><br>
+            
+            Here are some bits from the design and documentation for context:<br><br>
+        </p>
+        <img src="../../../assets/block.png" alt="ThreadOS File System Block Diagram">
+        <blockquote>
+            <p>
+                This program describes the file system for ThreadOS, which is used to stream files to/from <code>DISK</code> without requiring the manual use of <code>rawread()</code> and <code>rawwrite()</code>. The file system provides 
+                user threads with the implementation for system calls that enable format, open, read, write, seek, delete and getsize of files.<br><br>
+                
+                ThreadOS has only one single-level directory. Every user thread has its own thread control block, <code>TCB</code>, which records files opened by its associated thread. These entries point to a system wide <code>FileStructureTable</code> 
+                which maintains the seek pointer (internal file position) as well as the inode number.<br><br>
+                
+                Every file has an Inode, which is a data structure that records information about the file. It contains 11 pointers that point directly to 11 blocks (for the file data), as well as a single indirect pointer which points to a block that is 
+                full of pointers pointing to more bonafide blocks (for the file data). This “block of pointers” pointed to by the single indirect pointer holds <code>BLOCK_SIZE / POINTER_SIZE</code> pointers, or in this case <code>512 / 4 = 128</code> pointers (blocks).
+                <code>Inode</code> also maintains the file size, a flag indicating whether the Inode is in use, plus a count of how many times the file is open.<br><br>
+                
+                The first <code>DISK</code> block, block 0, is the <code>SuperBlock</code>. This block is managed by the OS and is inaccessible by user threads. It maintains information about total blocks on disk, total inodes, as well as the block number that is the
+                head of the free block list.<br><br>
+                
+                Files collect in Directory. Each entry contains filename and inode number. The directory itself is considered a file with its own inode (inode 0) located in the first 32 bytes of block 1. <code>Directory</code> is instantiated on boot by reading from these
+                bytes and is saved on quit by writing back the bytes.<br><br>
+                
+                Since every user thread has its own file descriptor table, the system maintains a <code>FileStructureTable</code> with a <code>FileTableEntry</code> per file. These entries contain the file’s seek pointer and links to the file’s inode. 
+                Also, when user threads spawn children, initially the parent copies its TCB and file descriptor table to its children, therefore increasing the number of references to the same particular <code>FileTableEntry</code> found within the <code>FileTableEntry</code>.
+            </p>
+        </blockquote>
+        <br>
+        <p class="lead">
+            Perhaps what makes this project challenging are all the moving parts, mainly:
+            <ol>
+                <li>There exists a file called <code>DISK</code>. This is a virtual hard drive, that is, a file worth 1000 blocks of 512 bytes each.</li>
+                <li>The ThreadOS <code>Kernel</code> is already wired to rawread/write to and from this file, that is, hit individual bytes directly.</li>
+                <li>Files are nothing more than a collection of <code>DISK</code> blocks. These blocks are tracked via an <code>Inode</code> data structure, which holds pointers to the data blocks of a file.</li>
+                <li>A flat (no sub folders) directory tracks existing files (represented as inodes internally).</li>
+                <li>A centralized file table exists such that every time a user access a file, an entry is made that references the file and what that user thread is doing with it (namely, the seek pointer i.e. the virtual cursor).</li>
+                <li>A file system which creates and manages all of these elements, with functionality to do proper (abstracted) reads and writes by filename instead of being done raw (by memory address). There's also functionality to create and delete files.</li>
+            </ol>
+        </p>
+        <br>
+        <p class="lead">
+            Ultimately everything depends on the <a href="https://en.wikipedia.org/wiki/Inode_pointer_structure" target="_blank">Inode</a> sub-structure. In addition to some file meta data (attributes), there exists a series of pointers. Each pointer will point to
+            a block of bytes holding a fragment of file data on DISK. The interesting bit is that only about 11 pointers will directly map to some block number.<br><br>
+            
+            In many cases 11 blocks are not enough to hold all file data, and that's where indirect pointers come in. In this scheme, instead of pointing directly to a data block, an indirect pointer will point to a block full of pointers. Those pointers, in turn,
+            point to data blocks. This idea can be implemented recursively, that is, an indirect pointer can point to a block of more indirect pointers, which then point to data blocks.<br><br>
+            
+            In this way, inodes can be of fixed size and have their theoretical maximum addressable file sizes. Suppose that a file needs 25 blocks. It could address the first 11 directly (at 4 bytes each), then address all the remaining 14 with just one more 4 byte pointer. 
+            This works because it can use the indirect block, which will hold up to <code>BLOCK_SIZE / 4</code> pointers to data blocks.<br><br>
+            
+            Another key idea was visualizing the layout of <code>DISK</code>. There's block 0, the superblock (metadeta), then a contiguous set of inodes that can be allocated as needed, then an initially contiguous unallocated chunk of memory that runs until the end of the
+            address space. From here, files can be allocated in a non-contiguous manner thanks to the linking abilities that are inherent to <code>Inode</code>.<br><br>
+            
+            Here's the way <code>DISK</code> is structured in ThreadOS:<br><br>
+
+            <img src="../../../assets/threados.png" alt="ThreadOS Disk Structure">
+            <br><br>
+
+            I should mention that <code>Inode</code> can allocate a new block via <code>SuperBlock</code>'s free list, which maintains a pointer a the first available unallocated block. Every unallocated block reserves its first 4 bytes as pointer to the next free block.<br><br>
+            
+            It was exciting to run various benchmarks on this file system. The unit tests included different read/write schemes (sequential, random), testing of file system functonality like opening and closing files within a directory, and verifying the written data comes back as
+            unchanged when read using abstracted (by filename) methods.<br><br>
+            
+            This being a final project for 430 prohibits from sharing any code, snippets or otherwise, but nonetheless this was one of the hardest yet most rewarding projects I've had. Being a group project also have me some more practice using git. It's fun seeing terms from my OS 
+            class show up here and there as I'm poking around in Linux or Windows.<br><br>
+            
+            This was the first class I've taken that's gotten this low-level (even though it was simulated with the JVM).<br><br>
+            
+            422, Computer Hardware, is up next.<br><br>
+            
+            A.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../../../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>

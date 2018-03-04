@@ -1,0 +1,75 @@
+/* POSTS */
+.post { margin: 6em; margin-right: 0; margin-left: 0; padding: 3em; border-style: solid; border-color: #FF0084; }
+.post:nth-child(1) { margin-top: 3em; }
+.small { font-family: monospace; font-size: 19px; color: #aaaaaa; margin: 12px auto; }
+span.date { color: #777777; }
+
+
+/* NAV */
+nav { padding-top: 3em; }
+.toggle { padding-top: 0; padding-bottom: 1.5em; padding-left: 1.5em; padding-right: 1.5em; 
+          border-style: solid; border: 3px outset;
+          font-size: 55%; font-weight: bold; }
+.prev { margin-right: 25em; }
+.next { margin-left: 25em; }
+.disabled { border-color: #afafaf; color: #afafaf; }
+.enabled { border-color: #A42CE9; }
+.enabled:hover {
+    text-decoration: none; transition: color 0.2s ease-in-out; border-color: #FF0084; 
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4),0 3px 8px 0 rgba(0,0,0,0.1);
+    -webkit-transform:translateY(-4px); transform:translateY(-4px); 
+    -webkit-transition: all 125ms ease-out; -moz-transition: all 125ms ease-out;
+    -ms-transition: all 125ms ease-out; -o-transition: all 125ms ease-out; transition: all 125ms ease-out; }
+.enabled:active { box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2); 
+    -webkit-transform:translateY(1px); transform: translateY(1px); -webkit-transition: all 125ms ease-out;
+    -moz-transition: all 125ms ease-out; -ms-transition: all 125ms ease-out; -o-transition: all 125ms ease-out;
+    transition: all 125ms ease-out; }
+.pulse { animation: pulse 2s infinite; }
+.pulse:hover { animation: none; }
+@-webkit-keyframes pulse {   0% { -webkit-box-shadow: 0 0 0 0 #A42CE9;  }
+                            70% { -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0); }
+                           100% { -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);    }   }
+@keyframes pulse {   0% { -moz-box-shadow: 0 0 0 0 #A42CE9;
+                          box-shadow: 0 0 0 0 #A42CE9;       }
+                    70% { -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+                          box-shadow: 0 0 0 10px rgba(204,169,44, 0);      }
+                   100% { -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+                          box-shadow: 0 0 0 0 rgba(204,169,44, 0);         } }
+
+
+/* BODY */
+.lead { margin-top: 25px; font-size: 21px; }
+blockquote { border-left: 4px solid #ccc; margin: 1.5em 10px; padding: 0.5em 10px;  font-size: 19px; color: #646464 }
+
+
+/* LISTS */
+ol { margin-left: 0; padding-right: 0; list-style-type: none; font-size: 19px; }
+ol li { counter-increment: n; margin-top: 15px; margin-bottom: 15px; }
+ol li::before { content: counter(n); padding-left: 4px; padding-right: 4px; margin-right: 5px; 
+                font-size: 95%; background-color: #888888; color: #FFFFFF; font-weight: bold; 
+                border-radius: 3px; }
+
+
+/* CODE SNIPPETS */
+code { font-size: 101%; }
+.well { font-size: 145%; }
+pre { margin: 0; margin-top: 0; counter-reset: line; }
+pre code { color: rgb(0, 0, 0); font-size: 16px; font: monospace; counter-increment: line; }
+pre code:before { content: counter(line)". "; 
+                  font-family: monospace;
+                  color: rgb(97, 97, 97);;
+                  -webkit-user-select: none;
+                  user-select: none; }
+.cmt { color: rgb(1, 189, 110); }
+
+/* SHRINK ADJUSTMENTS */
+@media only screen and (max-width: 1125px) { .prev { margin-right: 10em; } .next { margin-left: 10em; } }
+@media only screen and (max-width: 710px) {  .prev { margin-right: 1.5em; } .next { margin-left: 1.5em; } }
+@media only screen and (max-width: 580px) {  .prev { margin-right: 0; } .next { margin-left: 0; } }
+@media only screen and (max-width: 552px) {  .prev  { position: relative; top: 11.3em; left: 15em; }
+                                             .next  { position: relative; left: 5em; } 
+                                             .crumb { position: relative; right: 1em; } }
+@media only screen and (max-width: 484px) {  .crumb h1 { font-size: 35px; } }
+@media only screen and (max-width: 478px) {  .crumb h1 { font-size: 25px; }
+                                             .prev { position: relative; left: 11.5em; }
+                                             .next { position: relative; left: 5.5em; } }

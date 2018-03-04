@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<!-- BLOG / UNDERSTANDING GIT
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../blog.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Blog > Understanding Git</title>
+
+</head>
+
+<body>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <span><a href="../">Blog</a></span>
+            <span class="chevron">&rsaquo;</span>
+            <span>Understanding Git</span>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <h1 class="page-header"></h1>
+        <br>
+        <span class="small"><span class="date">By <mark>Adam Ali</mark> on November 9, 2017</span></span>
+        <p class="lead">
+            When I launched this site, I created a placeholder for a Github. I was weighing options between different Git solutions. This is my conclusion, at least for now.<br><br> 
+
+            The #1 issue I had was how to deal with projects done as coursework. I've had projects in some of my courses that were incredibly fun and demonstrated interesting CS concepts, and they are well designed assignments.<br><br> 
+            
+            Although worthy of being public, these assignments cannot be because they are assigned to other students with perhaps only slight variations, if any. The challenge is the whole point of doing these assignments, so exposing them isn't fair to professors or students.<br><br>
+            
+            I considered private self hosting with GitLab. Long story short, I can't use the UW web server since I only have 1GB. I could use a <a href="https://pimylifeup.com/raspberry-pi-gitlab/" target="_blank">Raspberry Pi</a> with an external drive to run a GitLab server at 
+            home and portforward, but then I would need to use a <a href="https://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">Dynamic DNS service</a> like No-IP to deal with my dynamic IP. This is doable, but time consuming since it would be my first self hosted Git server 
+            with software I've never used before.<br><br>
+            
+            With my limited time, I have a few free spots inbetween quarters to get more practice.<br><br>
+            
+            <a href="../../../fun/" target="_blank">Spectrum and Hanoi</a> qualify, but Spectrum uses a deprecated RGB LED library and needs to be updated and polished.<br><br>
+            
+            I could polish up those two and make a new third project and host them on Github. For now, though, I think it would be optimal to spend time practicing code problems on LeetCode or Hackerrank instead. 
+            As I learn new skills, I can eventually go for quality over quantity when it comes to open projects.<br><br>
+            
+            A.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../../../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>

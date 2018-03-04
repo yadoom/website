@@ -1,0 +1,163 @@
+/* UNIVERSAL */
+html, body { margin: 0; padding: 0; background-color: #fafafa; font-family: "Lato" }
+
+
+/* HEADER */
+header { height: 145px; padding: 25px; background-color: #A42CE9; }
+header h1 { font-family: "Bungee Shade"; font-size: 75px; color: #fafafa; }
+
+
+/* COLOR CYCLE EFFECT http://clrs.cc/ */
+@keyframes cydef {     0%{ background:#fafafa }
+                       7%{ background:#001F3F }
+                      14%{ background:#0074D9 }
+                      21%{ background:#7FDBFF }
+                      28%{ background:#39CCCC }
+                      35%{ background:#3D9970 }
+                      42%{ background:#2ECC40 }
+                      49%{ background:#01FF70 }
+                      56%{ background:#FFDC00 }
+                      63%{ background:#FF851B }
+                      70%{ background:#FF4136 }
+                      77%{ background:#85144B }
+                      84%{ background:#F012BE }
+                      91%{ background:#B10DC9 }
+                      95%{ background:#111111 }
+                      96%{ background:#dddddd }
+                      98%{ background:#aaaaaa }
+                     100%{ background:#fafafa }     }
+@keyframes cycle {     0%{ background:#A42CE9 }
+                       7%{ background:#001F3F }
+                      14%{ background:#0074D9 }
+                      21%{ background:#7FDBFF }
+                      28%{ background:#39CCCC }
+                      35%{ background:#54d199 }
+                      42%{ background:#74cc7d }
+                      49%{ background:#02e263 }
+                      56%{ background:#FFDC00 }
+                      63%{ background:#FF851B }
+                      70%{ background:#FF4136 }
+                      77%{ background:#85144B }
+                      84%{ background:#F012BE }     }              
+.color-cycle { -webkit-animation:cycle 25s linear infinite; animation:cycle 25s linear infinite }
+
+
+/* FALLING SNOW EFFECT https://github.com/pajasevi/CSSnowflakes */
+@keyframes snowflakes-fall{    0%{ top:-10% }
+                             100%{ top:100% } }
+@keyframes snowflakes-shake{   0%{ transform:translateX(0px)  }
+                              50%{ transform:translateX(80px) }
+                             100%{ transform:translateX(0px)  } }                            
+.snowflake { border-color: #ff0000; color: #ebfdfd; font-size: 2.2em; font-family: Arial; text-shadow: 0 0 1px #000;
+             position:fixed; top:-10%; z-index:9999; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;
+             cursor:default; -webkit-animation-name:snowflakes-fall,snowflakes-shake; -webkit-animation-duration:10s,3s; 
+             -webkit-animation-timing-function:linear,ease-in-out; -webkit-animation-iteration-count:infinite,infinite;
+             -webkit-animation-play-state:running,running; animation-name:snowflakes-fall,snowflakes-shake; animation-duration:10s,3s;
+             animation-timing-function:linear,ease-in-out; animation-iteration-count:infinite,infinite; animation-play-state:running,running}            
+.snowflake:nth-of-type(0) { left:1%; -webkit-animation-delay:0s,0s; animation-delay:0s,0s}
+.snowflake:nth-of-type(1) { left:10%; -webkit-animation-delay:1s,1s; animation-delay:1s,1s }
+.snowflake:nth-of-type(2) { left:20%; -webkit-animation-delay:6s,.5s; animation-delay:6s,.5s }
+.snowflake:nth-of-type(3) { left:30%; -webkit-animation-delay:4s,2s; animation-delay:4s,2s }
+.snowflake:nth-of-type(4) { left:40%; -webkit-animation-delay:2s,2s; animation-delay:2s,2s }
+.snowflake:nth-of-type(5) { left:50%; -webkit-animation-delay:8s,3s; animation-delay:8s,3s }
+.snowflake:nth-of-type(6) { left:60%; -webkit-animation-delay:6s,2s; animation-delay:6s,2s }
+.snowflake:nth-of-type(7) { left:70%; -webkit-animation-delay:2.5s,1s; animation-delay:2.5s,1s }
+.snowflake:nth-of-type(8) { left:80%; -webkit-animation-delay:1s,0s; animation-delay:1s,0s }
+.snowflake:nth-of-type(9) { left:90%; -webkit-animation-delay:3s,1.5s; animation-delay:3s,1.5s }
+
+
+/* ANNOUNCEMENTS */
+.announcement { padding-top: 10px; padding-bottom: 1px;
+                color: #FFFFFF; font-size: 18px; font-weight: bold; }
+.warn { background-color: #FF851B; }
+.ok { background-color: rgb(3, 233, 103); }
+
+
+/* NAV */
+nav { margin: 0px; padding: 22px; background-color: #fafafa; }
+nav span { display: inline-block; font-size: 35px; }
+.chevron { margin-left: 15px; margin-right: 15px; font-weight: bold; }  
+
+
+/* JUMBOTRON */
+.jumbotron { background-color: #fafafa; margin: 0px; margin-bottom: 7.4em; padding-top: 90px; }
+.jumbotron h1 a { font-size: 50px; }
+.jumbotron h2 a { font-size: 35px; }
+.jumbotron h3 { font-size: 28px; color: #A42CE9; display: inline-block; text-decoration: none; }
+
+
+/* ROW */   
+section { margin: 0px; margin-bottom: 10.4em; display: block; }
+.row .text-center { display: table; position: relative; margin: 0 auto; width: 720px; }
+
+
+/* CARDS */
+.card { text-align: center;
+        background-color: rgba(164, 44, 233, 0); border-radius: 10px; border: 3px outset #A42CE9; 
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1); 
+        display: inline-block; margin: 0px; margin-left: 40px; margin-right: 40px; height: 106px; width: 275px; }
+.card:nth-child(1), .card:nth-child(2), .card:nth-child(3) { margin-bottom: 70px; }
+.card>span { color: #A42CE9; font-size: 27px; font-weight: 500; text-decoration: none;
+             display: inline-block; line-height: 26px; vertical-align: middle; margin-top: 41px; }
+.card:hover span { text-decoration: none; transition: color 0.2s ease-in-out; color: #FF0084; }
+.card:hover { border-color: transparent;
+              box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4),0 3px 8px 0 rgba(0,0,0,0.1);
+              -webkit-transform:translateY(-4px); transform:translateY(-4px); 
+              -webkit-transition: all 125ms ease-out; -moz-transition: all 125ms ease-out;
+              -ms-transition: all 125ms ease-out; -o-transition: all 125ms ease-out; transition: all 125ms ease-out; }
+.card:active { box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2); 
+               -webkit-transform:translateY(1px); transform: translateY(1px); -webkit-transition: all 125ms ease-out;
+               -moz-transition: all 125ms ease-out; -ms-transition: all 125ms ease-out; -o-transition: all 125ms ease-out;
+               transition: all 125ms ease-out; }
+.off { box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.1); border-style: dotted; border-color: grey; }
+.off:hover { border-color: grey;
+             box-shadow: 0 0px 0px 0 rgba(0,0,0,0.4),0 0px 0px 0 rgba(0,0,0,0.1);
+             -webkit-transform:translateY(0px); transform:translateY(0px); 
+             -webkit-transition: all 0ms ease-out; -moz-transition: all 0ms ease-out;
+             -ms-transition: all 0ms ease-out; -o-transition: all 0ms ease-out; transition: all 0ms ease-out; }
+.off>span { color: grey; }
+.off:hover span {color: grey; }
+
+
+/* ABOUT */
+#abt { margin-top: 9em; margin-bottom: 6em; }
+
+
+/* CONTACT */
+.contact { padding: 70px; padding-bottom: 205px; margin: 0; margin-top: 235px; margin-bottom: 235px; width: 100%; 
+           display: block; text-align: center; }
+.contact span { display: inline-block; margin-left: 10px; margin-right: 10px; }
+.contact span i { font-size: 2.6em; }
+.contact span h1 { margin: 0px; font-size: 2.6em; }
+
+
+/* FOOTER */
+footer { display: block; font-size: 1.4em; padding-top: 35px; padding-bottom: 35px; margin: 0; min-height: 96px; 
+         text-align: center; width: 100%; }
+footer span { color: #aaa; display: inline-block; }
+footer span:before { content: "•"; padding: 1.75em; }
+footer span:nth-child(1):before { content: ""; }
+
+
+/* HYPERLINKS */
+a { color: #A42CE9; display: inline-block; text-decoration: none; }
+a:hover { text-decoration: none; transition: color 0.2s ease-in-out; color: #FF0084; }
+a:focus { text-decoration: none; transition: color 0.2s ease-in-out; color: #A42CE9; }
+
+
+/* HIGHLIGHT */
+mark { background-color: rgba(164, 44, 233, 0.24); }
+
+
+/* LINES */
+hr { margin: 0px; padding: 0px; border-color: #D1D1D1; border-style: dashed; }
+
+
+/* SHRINK ADJUSTMENTS */
+@media only screen and (max-width: 1125px) {
+    .card { margin-bottom: 70px; }
+    footer span { width: 100%; text-align: center; margin: 0.75em auto; display: block; float: left; }
+    footer span:before { content: ""; padding: 0; } 
+    .row { width: 90%; margin: 0 5%; }
+    hr { margin-top: 5.75em; }
+}  @media only screen and (max-width: 550px) { header { height: 230px; } .contact span h1 { font-size: 2em; } }

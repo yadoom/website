@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<!-- ROOT
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+  <head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./main.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Lato|Open+Sans|Roboto|Rubik" >
+    
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali</title>  
+
+  </head>
+  
+  <body id="top">
+
+      <!-- SNOW -->
+      <div class="snow" aria-hidden="true">
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+      </div>
+
+      <!-- HEADER -->
+      <header class="color-cycle">
+        <div class="container text-center">
+          <h1>ADAM ALI</h1>
+        </div>
+      </header>
+
+      <!-- ANNOUNCEMENT BAR -->
+      <div class="text-center announcement warn">
+        <p>Where art thou Github? Read my post <a href="./blog/1/understanding-git/" target="_blank">here</a> to learn more!</p>
+      </div>
+      <div class="text-center announcement ok">
+          <p>CSS 430 Operating Systems is complete! Read about my latest projects <a href="./blog/2/" target="_blank">here</a>!</p>
+      </div>
+
+      <!-- JUMBOTRON -->
+      <div class="jumbotron text-center">
+        <div class="container">
+          <h1><a href="https://www.uwb.edu/" target="_blank">UW Bothell</a></h1>
+          <h2><a href="https://www.uwb.edu/bscsse" target="_blank">Computer Science & Software Engineering</a></h2>  
+          <h3>2019</h3>     
+        </div>
+      </div>
+
+      <!-- CARD GRID -->
+      <div class="container text-center">
+        <section class="row">
+            <a class="card smoothScroll" href="#about"><span>About</span></a>
+            <a class="card smoothScroll" href="./assets/adamali.pdf"><span>Resume</span></a>
+            <a class="card " href="#contact"><span>Contact</span></a>
+            <a class="card " href="./blog/2/"><span>Blog</span></a>
+            <a class="card " href="./fun/"><span>Fun</span></a>
+            <p class="card off"><span><i class="fa fa-github fa-lg"></i></span></p>
+            <!-- <a class="card off" href="#"><span><i class="fa fa-github fa-lg"></i></span></a> -->
+        </section>
+      </div>
+
+      <!-- ABOUT -->
+      <a id="about"></a>
+      <div id="abt" class="container">
+          <h1 class="page-header">Hello, I'm Adam Ali.</h1><br>
+          <p class="lead">
+              I am a student at the University of Washington Bothell, pursuing a BS in Computer Science & Software Engineering.<br>
+              I expect to graduate in <mark>March 2019</mark>.<br><br>
+
+              I grew up in the Greater Seattle Area, what many consider to be the Silicon Valley of the north,
+              or what I like to call the Silicon Mountains. It didn't take long for me to become positively influenced
+              by the technology culture here. With the help of friends and family, I began to poke around with all sorts of
+              devices from early Macs to various handhelds. One day I discovered <code>Hello, World!</code> and I've been
+              hooked ever since.<br><br>
+    
+              I am interested in computer science because I have a natural inclination to work with
+              technology. I enjoy the challenges that it brings and solving problems that require strategy and
+              analysis. The satisfaction I feel when overcoming a challenge and solving a complex problem is
+              unmatched by nearly anything else. Technology itself has the power to solve problems and
+              change lives and cultures for the better, and therefore having the ability to develop technology is
+              much like a superpower in its own right.<br><br>
+
+              I enjoy improving things and making discoveries, while learning from mistakes along the way. On the side, I
+              have a strong interest in performance art and mountain biking.
+          </p>
+      </div>
+
+      <!-- CONTACT -->
+      <a id="contact"></a>
+      <div class="container text-center">
+          <section class="row contact">
+              <span><i class="fa fa-envelope"></i></span>
+              <span><h1>adamali@uw.edu</h1></span>
+          </section>
+      </div>
+
+      <!-- FOOTER -->
+      <hr>
+      <footer class="row">
+          <span>&copy; 2018 Adam Ali</span> 
+          <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+          <span><i class="fa fa-github fa-lg"></i></span>
+          <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+          <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+          <span><a href="#top">Return to top</a></span>
+      </footer>
+
+      <!-- SMOOTH SCROLLING -->
+      <script src="smooth-scroll.js"></script>    
+      <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+      </script>
+      
+  </body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<!-- ROOT / FUN
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="./fun.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Fun</title>
+
+</head>
+
+<body>
+
+    <!-- SNOW -->
+    <div class="snow" aria-hidden="true">
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+    </div>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <span><h1><a href="../">Adam Ali</a></h1></span>
+            <span class="chevron">&rsaquo;</span>
+            <span><h1>Fun</h1></span>
+        </div>
+    </nav>
+
+    <!-- GRID -->
+    <div class="container text-center fungrid">
+        <section class="row showcase">
+            <a id="rpi" class="card smoothScroll" href="#raspberry"><span>Raspberry Pi Light Show</span></a>
+            <a id="twr" class="card smoothScroll" href="#tower"><span>Tower of Hanoi Simulation</span></a>
+
+        </section>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="raspberry" class="container text-left funblock">
+        <h1 class="page-header text-center">Raspberry Pi Light Show</h1>
+        <blockquote>Source: <a href="https://learn.adafruit.com/raspberry-pi-spectrum-analyzer-display-on-rgb-led-strip/page-1" target="_blank">AdaFruit Learning System</a></blockquote>
+        <p class="lead text-left">
+            The Raspberry Pi is a versatile little thing. Its a low cost, low profile computer that can fit in the palm of your hand. 
+            It has a series of General Purpose Input Output (GPIO) pins that can be used to communicate with external hardware. <br><br>
+
+            I found a guide on Adafruit. The source above includes all the open source code for getting the RPi to communicate with strips of LEDs.<br><br>
+            
+            I was able to tweak the Python source to better fit my specific hardware and tastes. These include adjusting for the length and maximum 
+            brightness of my LED strip, cycling colors, adjusting the refresh rate to minimize delay. I also expiremented with a manual mode that can 
+            show static colors and different effects.<br><br> 
+            
+            It can be controlled remotely via ssh. I've lost the spectrum footage but it looked basically identical to the Adafruit GIF in the card above.
+        </p>
+    </div>
+
+    <div id="tower" class="container text-left funblock">
+        <h1 class="page-header text-center">Tower of Hanoi Simulation</h1>
+        <blockquote><a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi" target="_blank">Wikipedia</a></blockquote>
+        <p class="lead text-left">
+            This is a fun puzzle that has a neat background. Despite its apparent origins with <a href="https://en.wikipedia.org/wiki/%C3%89douard_Lucas" target="_blank">Édouard Lucas</a> 
+            of France, there are legends surrounding the puzzle.<br><br> 
+            
+            While it has a few different variations, the legend goes that some mysterious temple in a remote land houses a large room with three posts and 64 golden disks. 
+            In this room, mysterious people have been moving the disks for thousands of years following the rules of an ancient prophecy.
+            
+            Since the minimum number of moves to solve the Tower of Hanoi problem given <code>n</code> disks is <code>2<sup>n</sup>-1</code>, if each move 
+            took 1 second, it would take 42 times the age of the universe for the mysterious people to be finished.<br><br> 
+            
+            Using Java and JavaFX, I decided to make a simulator for this puzzle. You can specify the number of disks (up to 10) and it will solve the 
+            problem for you showing each step with animation.
+        </p>
+        <video width="1111" height="641" controls autoplay loop muted>
+            <source src="../assets/twr.mp4" type="video/mp4">
+        </video>
+        <div style="height: 75px;"></div>
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>

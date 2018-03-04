@@ -1,0 +1,42 @@
+Once a upon a time, linux boxes at my university's computer science lab were directly accessible via SSH.
+These machines were mapped to a URL on the universities web domain, so it wasn't necessary to be on the 
+local network. Then the admins changed the configs so that only UW IPs could reach the boxes.<br><br>
+
+This was a great security move. The admins updated the lab wiki with instructions on how to access the boxes
+outside the UW, by using F5 Networks' Big-IP client. In other words, a VPN that tunnels through UW and requires
+UW's own NetID authentication through its web login protocol.<br><br>
+
+This was great except for a couple of issues. Sometimes, Big-IP would struggle to maintain a connection to the
+VPN and drop randomly -- other times no connection at all. Also, Big-IP has no convenient Linux solution and the wiki offered
+nothing in that regard.<br><br>
+
+There's a <a href="https://support.f5.com/kb/en-us/products/big-ip_apm/manuals/product/apm-client-configuration-11-4-0/4.html"
+             target="_blank">CLI version of Big-IP</a>, but just like with the GUI in Windows, connections can be unstable
+ore frequently than what I would consider normal. Especially at night, probably when most students are logging in through
+UWs server. It must be used for more than just our lab on our campus.<br><br>
+
+Anyway, a solution I found that works incredibly well is simply using an SSH tunnel. I access UW's <em>vergil</em> web server,
+the server that this site is hosted on, and then using a remote shell simply SSH into UWB's lab. It seems that the IP range
+is cross campus.<br><br>
+
+Rather than SSH into vergil and then SSH again into the lab, especially since I can't create bash aliases on vergil, I simply
+created an alias on my home machine to tunnel through vergil and hit the UWB lab using the standard addresses:   
+
+<div class="well"><code>ssh netid@vergil.u.washington.edu -L 3111:uw1-320-##.uwb.edu:22 -N -f</code></div>
+
+<em>##</em> is just the particular machine ID (there are perhaps 10 to 12 boxes I believe). This command piggy backs
+on vergil by means of portforwarding. In this case, I'm using <code>-L</code> to bind local port 3111 (any unused port
+over 1024 should work) to the remote socket (the UWB lab).<br><br>
+
+<code>-N</code> indicates that no commands are to be executed directly from the call to SSH, but rather just maintain the
+portforwarding. <code>-f</code> puts the process in the background, allowing bash to return, after authentication.
+
+From here, I simply put this in my <em>.bash-aliases</em> with my info as <code>tunnel</code>. Any time I want to hit
+the UW lab, I simply call my alias and close the terminal after authentication. Then I connect to my local port with the
+same uname:
+
+<div class="well"><code>ssh netid@localhost -p 3111</code></div>
+
+This works with sftp to transfer files as well, but I just use the GUI network folder feature in my file explorer.<br><br>
+
+A.          

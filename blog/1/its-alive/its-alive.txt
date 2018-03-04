@@ -1,0 +1,18 @@
+Welcome. This is the first post in what I hope to be a series of posts regarding (mostly) technical topics
+that I encounter every now and then.
+              
+In my time studying programming and the like, I hardly ever touched on anything web dev related. I decided to use 
+some of the extra time I had this summer to read up on the magic of HTML and CSS.
+              
+The learning curve was about as steep as I expected. As with the handful of languages I've encountered, everything
+seemed basically impossible at first. But I am getting the hang of it, and the good old feeling of turning code
+into tangible results hasn't faded one bit.
+
+This site is going to be a rolling work in progress. It's built to be an online portfolio, though it also doubles
+as a test bed for me to build on my web dev skills when I'm not going full throttle on course curricula.
+
+I've been toying with different color schemes. My mood nowadays seems to call for purple and pink.
+
+If you're reading this and have suggestions, I definitely would like to hear about them at adamali@uw.edu.
+              
+A.

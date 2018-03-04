@@ -1,0 +1,25 @@
+When I launched this site, I created a placeholder for a Github. I was weighing options between different Git 
+solutions. This is my conclusion, at least for now.
+            
+The #1 issue I had was how to deal with projects done as coursework. I've had projects in some of my courses that 
+were incredibly fun and demonstrated interesting CS concepts, and they are well designed assignments. 
+            
+Although worthy of being public, these assignments cannot be because they are assigned to other students with perhaps
+only slight variations, if any. The challenge is the whole point of doing these assignments, so exposing them isn't fair
+to professors or students.
+            
+I considered private self hosting with GitLab. Long story short, I can't use the UW web server since I only have 1GB. I 
+could use a <a href="https://pimylifeup.com/raspberry-pi-gitlab/" target="_blank">Raspberry Pi</a> with an external drive to run a GitLab 
+server at home and portforward, but then I would need to use a 
+<a href="https://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">Dynamic DNS service</a> like No-IP to deal with my dynamic IP. 
+This is doable, but time consuming since it would be my first self hosted Git server with software I've never used before.
+            
+With my limited time, I have a few free spots inbetween quarters to get more practice. 
+            
+<a href="../../fun/" target="_blank">Spectrum and Hanoi</a> qualify, but Spectrum uses a deprecated RGB LED library and needs to be updated and polished.
+            
+I could polish up those two and make a new third project and host them on Github. For now, though, I think it would be 
+optimal to spend time practicing code problems on LeetCode or Hackerrank instead. As I learn new skills, I can eventually 
+go for quality over quantity when it comes to open projects.
+          
+A.

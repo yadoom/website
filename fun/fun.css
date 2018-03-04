@@ -1,0 +1,7 @@
+.card { height: 450px; width: 450px; margin-top: 0px; background-color: none; }
+.card>span { color: #fafafa; }
+.showcase { margin: 0; }
+#rpi { background-image: url(../assets/rpi.gif); }
+#twr { background-image: url(../assets/twr.gif); }
+.fungrid { margin-top: 9em; margin-bottom: 0; }
+.funblock { margin-top: 15em; margin-bottom: 15em; } 

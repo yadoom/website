@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<!-- ROOT / BLOG / 1
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-111682695-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../blog.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Blog > 1</title>
+
+</head>
+
+<body>
+
+    <!-- SNOW -->
+    <div class="snow" aria-hidden="true">
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+        <div class="snowflake">•</div>
+    </div>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <a href=""><span class="toggle prev disabled"><h1>&larr;</h1></span></a>
+
+            <span class="crumb"><h1><a href="../../">Adam Ali</a></h1></span>
+            <span class="crumb chevron">&rsaquo;</span>
+            <span class= "crumb"><h1>Blog</h1></span>
+            <span class="crumb chevron">&rsaquo;</span>
+            <span class="crumb"><h1>1</h1></span>
+
+            <a href="../2/"><span class="toggle next enabled pulse"><h1>&rarr;</h1></span></a>
+        </div>
+    </nav>
+
+    <!-- POSTS -->
+    <div class="container">
+        <section class="post">
+            <h1 class="page-header"><a href="./f5-uw-lab/">F5 VPN and the UWB Linux Lab</a></h1>
+            <br>
+            <span class="small"><span class="date">November 10, 2017</span></span>
+            <p class="lead">
+                Once a upon a time, linux boxes at my university's computer science lab were directly accessible via SSH. These machines were mapped to a URL on the universities web domain, so it wasn't necessary to be on the local network. Then the admins changed the configs so that only UW IPs could reach the boxes.
+            </p>
+            <a id="test" href="./f5-uw-lab/">
+                <button class="btn btn-default btn-lg">Read More</button>
+            </a>
+        </section>
+
+        <section class="post">
+            <h1 class="page-header"><a href="./beauty-os/">The Beauty of Operating Systems</a></h1>
+            <br>
+            <span class="small"><span class="date">November 9, 2017</span></span>
+            <p class="lead">
+                I'm currently taking CSS 430, Operating Systems, and it's a ton of fun. Prior to this I had plenty of experience with various Linux distros and only knew the raw basics of processes and threads, but now I've discovered a new appreciation for the operating systems we interact with each day.
+            </p>
+            <a id="test" href="./beauty-os/">
+                <button class="btn btn-default btn-lg">Read More</button>
+            </a>
+        </section>
+
+        <section class="post">
+            <h1 class="page-header"><a href="./understanding-git/">Understanding Git</a></h1>
+            <br>
+            <span class="small"><span class="date">November 9, 2017</span></span>
+            <p class="lead">
+                When I launched this site, I created a placeholder for a Github. I was weighing options between different Git solutions. This is my conclusion, at least for now.
+            </p>
+            <a id="test" href="./understanding-git/">
+                <button class="btn btn-default btn-lg">Read More</button>
+            </a>
+        </section>
+
+        <section class="post">
+            <h1 class="page-header"><a href="./its-alive/">It's Alive!</a></h1>
+            <br>
+            <span class="small"><span class="date">September 27, 2017</span></span>
+            <p class="lead">
+                Welcome. This is the first post in what I hope to be a series of posts regarding (mostly) technical topics that I encounter every now and then.
+            </p>
+            <a id="test" href="./its-alive/">
+                <button class="btn btn-default btn-lg">Read More</button>
+            </a>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
+        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>
