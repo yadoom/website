@@ -82,5 +82,8 @@ pre code:before { content: counter(line)". ";
                                              .crumb, .crumb h1 { font-size: 40px; }
                                              .adm h1, .chevron { font-size: 0; } }
 @media only screen and (max-width: 538px) {  .prev { margin-right: 0; }
-                                             .next { margin-left:  10px; }    
-                                             .adm h1, .chevron { font-size: 0; } }
+                                             .next { margin-left:  60px; }    
+                                             .adm h1, .chevron, .blg h1 { font-size: 0; } }
+@media only screen and (max-width: 438px) {  .prev { margin-right: 0; }
+                                             .next { margin-left:  30px; }    
+                                             .adm h1, .chevron, .blg h1, .pgn h1 { font-size: 0; } }
