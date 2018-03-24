@@ -37,6 +37,10 @@ nav { padding-top: 3em; }
                    100% { -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
                           box-shadow: 0 0 0 0 rgba(204,169,44, 0);         } }
 
+.crumb, .crumb h1 { font-family: "Bungee Shade"; font-size: 70px; font-weight: bold; }
+.adm { color: #A42CE9; }
+.pgn { color: #FF0084; }
+.blg { color: #FF851B; }
 
 /* BODY */
 .lead { margin-top: 25px; font-size: 21px; }
@@ -64,13 +68,16 @@ pre code:before { content: counter(line)". ";
 .cmt { color: rgb(1, 189, 110); }
 
 /* SHRINK ADJUSTMENTS */
-@media only screen and (max-width: 1125px) { .prev { margin-right: 10em; } .next { margin-left: 10em; } }
-@media only screen and (max-width: 710px) {  .prev { margin-right: 1.5em; } .next { margin-left: 1.5em; } }
-@media only screen and (max-width: 580px) {  .prev { margin-right: 0; } .next { margin-left: 0; } }
-@media only screen and (max-width: 552px) {  .prev  { position: relative; top: 11.3em; left: 15em; }
-                                             .next  { position: relative; left: 5em; } 
-                                             .crumb { position: relative; right: 1em; } }
-@media only screen and (max-width: 484px) {  .crumb h1 { font-size: 35px; } }
-@media only screen and (max-width: 478px) {  .crumb h1 { font-size: 25px; }
-                                             .prev { position: relative; left: 11.5em; }
-                                             .next { position: relative; left: 5.5em; } }
+@media only screen and (max-width: 1199px) { .prev { margin-right: 75px; }
+                                             .next { margin-left:  75px; }
+                                             .crumb, .crumb h1 { font-size: 60px; } }
+@media only screen and (max-width: 991px) {  .prev { margin-right: 50px; }
+                                             .next { margin-left:  50px; } 
+                                             .crumb, .crumb h1 { font-size: 50px; } }
+@media only screen and (max-width: 900px) {  .prev { margin-right: 25px; }
+                                             .next { margin-left:  25px; } 
+                                             .crumb, .crumb h1 { font-size: 40px; } }
+@media only screen and (max-width: 650px) {  .prev { margin-right: 5px; }
+                                             .next { margin-left:  30px; } 
+                                             .crumb, .crumb h1 { font-size: 40px; }
+                                             .adm h1, .chevron { font-size: 0; } }

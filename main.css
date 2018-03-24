@@ -4,7 +4,7 @@ html, body { margin: 0; padding: 0; background-color: #fafafa; font-family: "Lat
 
 /* HEADER */
 header { height: 145px; padding: 25px; background-color: #A42CE9; }
-header h1 { font-family: "Bungee Shade"; font-size: 85px; color: #fafafa; }
+header h1 { font-family: "Bungee Shade"; font-size: 85px; color: #fafafa; font-weight: bold;}
 
 
 /* COLOR CYCLE EFFECT http://clrs.cc/ */

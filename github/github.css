@@ -31,7 +31,9 @@ nav { padding: 0; padding-top: 3em; padding-left: 0; }
 .pulse2 { animation: pulse 2s infinite; }
 
 /* HEADER */
-nav h1 { color: #A42CE9; font-size: 100px; font-family: "Bungee Shade"; position: relative; right: 120px; }
+nav h1 { font-size: 100px; font-family: "Bungee Shade"; position: relative; right: 120px; font-weight: bold; }
+.git { color: #FF851B; }
+.yadoom { color: #FF0084; }
 
 /* JUMBOTRON */
 .jumbotron { margin: 60px; padding: 0; border: 0; }
@@ -49,4 +51,6 @@ nav h1 { color: #A42CE9; font-size: 100px; font-family: "Bungee Shade"; position
     .toggle { top: 20px; }
     nav h1 { left: 120px; bottom: 100px; }
     .card { width: 290px; }
+    .yadoom { font-size: 0; }
+    .slash { font-size: 0; }
 }
