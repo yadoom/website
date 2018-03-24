@@ -48,4 +48,5 @@ nav h1 { color: #A42CE9; font-size: 100px; font-family: "Bungee Shade"; position
     .jumbotron { margin: 50px; position: relative; bottom: 100px; }
     .toggle { top: 20px; }
     nav h1 { left: 120px; bottom: 100px; }
+    .card { width: 350px; }
 }
