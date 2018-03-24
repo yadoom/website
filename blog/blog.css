@@ -9,7 +9,8 @@ span.date { color: #777777; }
 nav { padding-top: 3em; }
 .toggle { padding-top: 0; padding-bottom: 1.5em; padding-left: 1.5em; padding-right: 1.5em; 
           border-style: solid; border: 3px outset;
-          font-size: 55%; font-weight: bold; }
+          font-size: 55%; font-weight: bold;
+          width: 85px; border-radius: 100%; }
 .prev { margin-right: 25em; }
 .next { margin-left: 25em; }
 .disabled { border-color: #afafaf; color: #afafaf; }

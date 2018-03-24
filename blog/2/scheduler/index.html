@@ -20,15 +20,12 @@ http://www.washington.edu/online/terms
 <head>
 
     <!-- ANALYTICS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116283402-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'UA-111682695-1');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-116283402-1');
     </script>
 
     <!-- META -->
@@ -103,8 +100,8 @@ http://www.washington.edu/online/terms
 
             Here are lecture slides introducing the two:<br><br>
 
-            <img src="../../../assets/rr.png" alt="Round-robin">
-            <img src="../../../assets/mfq.png" alt="Multilevel Feedback Queue">
+            <img src="./rr.png" alt="Round-robin">
+            <img src="./mfq.png" alt="Multilevel Feedback Queue">
 
             <br><br>
 
@@ -168,7 +165,7 @@ http://www.washington.edu/online/terms
         </p>
 
         <p class="lead">
-            <img src="../../../assets/flowchart.png" alt="Scheduler Flowchart"><br><br>
+            <img src="./flowchart.png" alt="Scheduler Flowchart"><br><br>
 
             The provided tests for these algorithms simply spawned a series of threads that would run concurrently. ThreadOS is set up to announce these
             threads as they are receiving quantum, which can reveal whether or not the scheduler is exhibiting the appropriate behavior.<br><br>
@@ -177,8 +174,8 @@ http://www.washington.edu/online/terms
 
             With my implementations, I got the following results:<br><br>   
 
-            <img src="../../../assets/table.png" alt="Scheduler Results">
-            <img src="../../../assets/averages.png" alt="Scheduler Averages"><br><br>
+            <img src="./table.png" alt="Scheduler Results">
+            <img src="./averages.png" alt="Scheduler Averages"><br><br>
 
             MFQ yeilds better performance because context switches are costly to the OS. Every preemption requires that a TCB have its state saved and moved.
             Every time the OS is forced to demote a thread (and thus make a context switch), MFQ tries to reduce the chance of another expensive context 
@@ -195,8 +192,7 @@ http://www.washington.edu/online/terms
     <hr>
     <footer class="row">
         <span>&copy; 2018 Adam Ali</span>
-        <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
-        <span><i class="fa fa-github fa-lg"></i></span>
+        <span><a href="./github/"><i class="fa fa-github fa-lg"></i></a></span>
         <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
         <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
         <span><a href="#top">Return to top</a></span>

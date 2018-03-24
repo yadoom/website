@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<!-- BLOG / CIRCUITS & 68K
+    _       _                      _    _ _ 
+   / \   __| | __ _ _ __ ___      / \  | (_)
+  / _ \ / _` |/ _` | '_ ` _ \    / _ \ | | |
+ / ___ \ (_| | (_| | | | | | |  / ___ \| | |
+/_/   \_\__,_|\__,_|_| |_| |_| /_/   \_\_|_|
+
+I see you are peeking at my site's source. Welcome! Feel free to poke
+around. If you have any suggestions, please let me know at adamali@uw.edu.
+
+http://www.washington.edu/online/privacy
+http://www.washington.edu/online/terms
+
+© 2018 Adam Ali -->
+
+<html>
+
+<head>
+
+    <!-- ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116283402-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-116283402-1');
+    </script>
+
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BOOTSTRAP/FONTAWESOME/CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../blog.css">
+
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee+Shade|Cabin|Droid+Sans|Lato|Open+Sans|Oswald|Roboto|Rubik|Work+Sans">
+
+    <!-- FAVICON & TITLE -->
+    <!-- <link rel='shortcut icon' type='image/png' href='#'> -->
+    <title>Adam Ali > Blog > Circuits & 68K</title>
+
+</head>
+
+<body>
+
+    <!-- PAGE NAV -->
+    <nav>
+        <div class="container text-center">
+            <span><a href="../">Blog</a></span>
+            <span class="chevron">&rsaquo;</span>
+            <span>Circuits & 68K</span>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <h1 class="page-header"></h1>
+        <br>
+        <span class="small"><span class="date">By <mark>Adam Ali</mark> on March 22, 2018</span></span>
+        <p class="lead">
+            Here I was thinking Operating Systems was low level. In CSS 422 Hardware & Computer Organization, I discovered the magic of gates, processors, instruction set architures and more. I obtained an all-new perspective
+            on software development in this course.<br><br>
+            
+            From the <a href="http://www.washington.edu/students/crscatb/css.html" target="_blank">course catalog</a>:
+        </p>
+        <blockquote>
+            <p>
+                    An introduction to the architecture, operation, and organization of a modern computing machine. Topics covered include basic logic operations, state-machines, register models, memory organization, peripherals, 
+                    and system issues. Assembly language taught in order to understand the instruction set architecture and memory model of the computer.
+            </p>
+        </blockquote>
+        <p class="lead">
+                Other than building a PC, this was my first foray into what lies below software. I was excited at the opportunity to discover the low level and reasonably complex details for digital logic and processing. I quickly realized how deep this rabbit hole goes, and if the multiple textbooks are any indication, there is simply too much for one blog post.<br><br>
+
+                To keep things concise, I'll write about some foundation and my favorite takeaways.<br><br>
+
+                Right away we jumped into digital logic. A wafer of silicon that makes some logical circuit is composed of gates, little units that can conduct bitwise logical operations with <code>HI</code> (1) or <code>LO</code> (0) signals and (for now) the same for outputs.<br><br>
+
+                Here are some examples:<br><br>
+                <img src="./gates.png"/>
+                <blockquote>https://learn.sparkfun.com/tutorials/digital-logic</blockquote>
+        </p>
+        <p class="lead">
+            These are a lot like the typical boolean operations we would see in high level languages like Java or C++, but simply in a hardware representation dealing with "hi" and "lo" voltages. Typically there are two inputs and the gate will output one signal, <code>Q</code>, as the result of the logical operation.<br><br>
+
+            Of course, these can be chained such that any output <code>Q</code> can serve as any input <code>A</code> or <code>B</code>. This is the basis for all digital circuits.<br><br>
+
+            Given this is hardware level and we are dealing with electrical signals rather than concrete values in software, I immediately began wondering what constitutes a <code>HI</code> or <code>LO</code>. I learned that it's a matter of voltage, such that there is a threshold where a signal is classified. Signals are
+            expect to transition from one state to another as fast as possible.<br><br>
+
+            Half of the course focused on this area of hardware, in the strict sense of the word, exploring digital logic in increasing complexity and bit manipulation like doing arithmetic. This slowly transitioned into software applications, or hardware arrangements and activities that exist under the hood of software routines.<br><br>
+
+            <br><br>
+            Then I met the Motorola 68000.<br><br>
+
+            This is the hardware engineer's programming language. There are no conveniences or object-oriented-ness in the Java or C++ sense. Rather, we a simple (or is complicated?) arrangment of registers that hold 1's and 0's with a vast instruction set that can move or manipulate those values. We also have access to a range of memory or RAM.<br><br>
+
+            Here's the data arrangment of the 68000:
+            <img src="./regs.png"/>
+            <blockquote>http://compsci02.snc.edu/cs225/2005/TI%20calculators/Website/processor.html</blockquote>
+        </p>
+        <p class="lead">
+            <code>DATA</code> registers hold literal values like numbers or ASCII strings, <code>ADDRESS</code> registers hold memory locations that point somewhere in the 68000 address space.<br><br>
+
+            There is a special address register, <code>A7</code>, which points at the top of the stack. This stack is functionally the same as any stack, but is managed manually in memory. It grows down, so every push onto it requires a manual decrement of the <code>A7</code> pointer. <code>PC</code> is the program counter, or a pointer to the next
+            instruction to be executed.<br><br>
+            
+            Lastly, we have <code>CCR</code>, or special register that has one bit per condition (things like negative, zero, etc.) that flip about after each instruction. This makes it clear to the programmer what happened to the machine state after the last instruciton was executed, and from there decisions can be made.<br><br>
+
+            <br><br>
+            Every instruction in a 68K source file as a memory location, which is what <code>PC</code> would be set to, and of course the instruction itself. This instruction has a structure, as 1's and 0's, and these are divided up into sections that hold particular meaning given the context. The 68000 Programmer's Manual describes these structures.<br><br>
+
+            One of the most common instructions, MOVE, for example:
+            <img src="./move.PNG"/>
+            <blockquote>Motorola 68000 Programmer's Manual</blockquote>
+        </p>
+        <p class="lead">
+            This is a typical page for an instruction out of the manual. We can see how <code>CCR</code> is affected, and how the bits are laid out.<br><br>
+
+            The assembler will parse those bits, at the memory location of the instruction, such that the appropriate registers and values are retrieved/set.<br><br>
+
+            <br><br>
+            Our final project was the 68K Disassembler: a decompiler for 68K, written in 68K!<br><br>
+            
+            The idea was to take advantage of the inherent bit manipulation features of 68K to play with a data set that has raw instructions loaded (in bit form) to be pulled apart and interpeted as ASCII source for readability.<br><br>
+
+            Our basic design:<br>
+            <img src="./dasm.PNG"/>
+            <br><br>
+
+            We used the following chart for a bird's eye of the bit structure for all of 68K's instructions and addressing modes, though only a subset were required for the project:
+            <img src="./colorchart.PNG"/>
+            <br><br>
+
+            <br>
+            I figure this is just about the best way to really drive hardware concepts home, given we went from being introduced to a new language only to develop a decompiler for it weeks later.<br><br>
+
+            Despite the challenge, I became more comfortable taking on complex problems and working through them. There were a number of bugs an issues, from instructions not parsing properly to strange output
+            here and there. But that's part of the game.<br><br>
+
+            Next stop: 432 Computer Networking and 475 Databases!<br><br>
+            
+            A.
+        </p>
+    </div>
+
+    <!-- FOOTER -->
+    <hr>
+    <footer class="row">
+        <span>&copy; 2018 Adam Ali</span>
+        <span><a href="./github/"><i class="fa fa-github fa-lg"></i></a></span>
+        <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
+        <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
+        <span><a href="#top">Return to top</a></span>
+    </footer>
+
+    <!-- SMOOTH SCROLLING -->
+    <script src="../../../smooth-scroll.js"></script>
+    <script>
+        var scroll = new SmoothScroll('a[href*="#"]');
+    </script>
+
+</body>
+
+</html>

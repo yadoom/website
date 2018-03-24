@@ -1,0 +1,51 @@
+/* GRAY COLOR CYCLE EFFECT http://clrs.cc/ */
+@keyframes gcycle {    0%{ background:#fafafa }
+                      10%{ background:#f4f4f4 }
+                      20%{ background:#eeeeee }
+                      30%{ background:#e8e8e8 }
+                      80%{ background:#eeeeee }
+                      90%{ background:#f4f4f4 }
+                     100%{ background:#fafafa }    }              
+.gray-cycle { -webkit-animation:gcycle 2s linear infinite; animation:gcycle 2s linear infinite }
+
+/* NAV */
+nav { padding: 0; padding-top: 3em; padding-left: 0; }
+.toggle { padding-top: 0; padding-bottom: 1.5em; padding-left: 1.5em; padding-right: 1.5em; position: relative; bottom: 20px;
+          border-style: solid; border: 3px outset;
+          font-size: 55%; font-weight: bold;
+          width: 80px; border-radius: 100%;  }
+.prev { margin-right: 25em; }
+.next { margin-left: 25em; }
+.disabled { border-color: #afafaf; color: #afafaf; }
+.enabled { border-color: #A42CE9; }
+.enabled:hover {
+    text-decoration: none; transition: color 0.2s ease-in-out; border-color: #FF0084; 
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4),0 3px 8px 0 rgba(0,0,0,0.1);
+    -webkit-transform:translateY(-4px); transform:translateY(-4px); 
+    -webkit-transition: all 125ms ease-out; -moz-transition: all 125ms ease-out;
+    -ms-transition: all 125ms ease-out; -o-transition: all 125ms ease-out; transition: all 125ms ease-out; }
+.enabled:active { box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2); 
+    -webkit-transform:translateY(1px); transform: translateY(1px); -webkit-transition: all 125ms ease-out;
+    -moz-transition: all 125ms ease-out; -ms-transition: all 125ms ease-out; -o-transition: all 125ms ease-out;
+    transition: all 125ms ease-out; }
+.pulse2 { animation: pulse 2s infinite; }
+
+/* HEADER */
+nav h1 { color: #A42CE9; font-size: 100px; font-family: "Bungee Shade"; position: relative; right: 120px; }
+
+/* JUMBOTRON */
+.jumbotron { margin: 60px; padding: 0; border: 0; }
+.jumbotron h1 { font-size: 38px; font-weight: normal; }
+.jumbotron h2 { font-size: 38px; font-weight: bold; }
+.jumbotron h3 { font-size: 25px; font-weight: normal; color:#AAAAAA }
+
+/* GITHUB CARD */
+.card { width: 600px; padding-bottom: 110px; }
+.card span { font-size: 40px; }
+
+/* SHRINK ADJUSTMENTS */
+@media only screen and (max-width: 1200px) {
+    .jumbotron { margin: 50px; position: relative; bottom: 100px; }
+    .toggle { top: 20px; }
+    nav h1 { left: 120px; bottom: 100px; }
+}

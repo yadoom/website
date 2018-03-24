@@ -20,13 +20,14 @@ http://www.washington.edu/online/terms
   <head>
 
     <!-- ANALYTICS -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111682695-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116283402-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-111682695-1');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-116283402-1');
     </script>
+
 
     <!-- META -->
     <meta charset="utf-8">
@@ -75,11 +76,11 @@ http://www.washington.edu/online/terms
       </header>
 
       <!-- ANNOUNCEMENT BAR -->
-      <div class="text-center announcement warn">
-        <p>Where art thou Github? Read my post <a href="./blog/1/understanding-git/" target="_blank">here</a> to learn more!</p>
-      </div>
       <div class="text-center announcement ok">
-          <p>CSS 430 Operating Systems is complete! Read about my latest projects <a href="./blog/2/" target="_blank">here</a>!</p>
+          <p>CSS 422 Hardware & Computer Organization is complete! Read about my latest projects <a href="./blog/2/" target="_blank">here</a>!</p>
+      </div>
+      <div class="text-center announcement red">
+        <p>My Github repos are mostly private! Get details on how to view them <a class="cyan" href="./github/" target="_blank">here</a>!</p>
       </div>
 
       <!-- JUMBOTRON -->
@@ -87,20 +88,20 @@ http://www.washington.edu/online/terms
         <div class="container">
           <h1><a href="https://www.uwb.edu/" target="_blank">UW Bothell</a></h1>
           <h2><a href="https://www.uwb.edu/bscsse" target="_blank">Computer Science & Software Engineering</a></h2>  
-          <h3>2018</h3>     
+          <h3>2018</h3>  
         </div>
       </div>
 
       <!-- CARD GRID -->
       <div class="container text-center">
         <section class="row">
-            <a class="card smoothScroll" href="#about"><span>About</span></a>
+            <!-- <p class="card off"><span><i class="fa fa-github fa-lg"></i></span></p> -->
+            <a class="card pulse" href="./github/"><span><i class="fa fa-github fa-lg"></i></span></a>
             <a class="card smoothScroll" href="./assets/adamali.pdf"><span>Resume</span></a>
-            <a class="card " href="#contact"><span>Contact</span></a>
             <a class="card " href="./blog/2/"><span>Blog</span></a>
+            <a class="card smoothScroll" href="#about"><span>About</span></a>
+            <a class="card " href="#contact"><span>Contact</span></a>
             <a class="card " href="./fun/"><span>Fun</span></a>
-            <p class="card off"><span><i class="fa fa-github fa-lg"></i></span></p>
-            <!-- <a class="card off" href="#"><span><i class="fa fa-github fa-lg"></i></span></a> -->
         </section>
       </div>
 
@@ -143,8 +144,7 @@ http://www.washington.edu/online/terms
       <hr>
       <footer class="row">
           <span>&copy; 2018 Adam Ali</span> 
-          <!-- <span><a href="#"><i class="fa fa-github fa-lg"></i></a></span> -->
-          <span><i class="fa fa-github fa-lg"></i></span>
+          <span><a href="./github/"><i class="fa fa-github fa-lg"></i></a></span>
           <span><a href="http://www.washington.edu/online/privacy" target="_blank">Privacy</a></span>
           <span><a href="http://www.washington.edu/online/terms" target="_blank">Terms</a></span>
           <span><a href="#top">Return to top</a></span>
