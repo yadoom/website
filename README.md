@@ -13,4 +13,6 @@ The pulsing Github logo button on the home page leads to a portal for my Github.
 # Blog
 I make posts about once or twice a quarter as a rolling log of what's going on in my courses and what projects I'm working on. They also serve as part of the documentation for some of the projects.
 
-I now consider this an official project and no longer something expiremental like it once was. If it isn't already obvious, I really like colors.
+I now consider this an official project and no longer something expiremental like it once was. 
+
+If it isn't already obvious, I really like colors. Most of the hues and inspiration for the cycling banner are from http://clrs.cc/.
