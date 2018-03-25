@@ -8,3 +8,9 @@ The reason I am mirroring it here is for the Github name in the URL to list on r
 Generally, most pages are optimized for desktop and mobile displays. It's been tested by resizing my browser window mainly.
 
 # Github Landing
+The pulsing Github logo button on the home page leads to a portal for my Github. Since I have a lot of code from school projects I'd like to show case, I had to make them all private. In order to make them accessible for select viewers, I included a  page that links to a Github login that redirects to my profile after credentials to guest dummy collaborator are entered. I share the login on request.
+
+# Blog
+I make posts about once a quarter as a rolling log of what's going on in my courses and what projects I'm working. They also serve as part of the documentation for some of these projects.
+
+I now consider this an official project and no longer something expiremental like it once was. If it isn't already obvious, I really like colors.
