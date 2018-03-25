@@ -7,7 +7,7 @@ The reason I am mirroring it here is for the Github name in the URL to list on r
 
 Generally, most pages are optimized for desktop and mobile displays. It's been tested by resizing my browser window mainly.
 
-# Google Analytics (Disclaimer)
+# Google Analytics (disclaimer)
 I have a bit of JS on all of my pages that report usage analytics. It logs all kinds of information: usage dates/times/durations, user agents, IP addresses and so on. There's nothing particularly identifying, but I use it to get an idea of how many hits I'm getting when I send out resumes with my portfolio linked on them. It's also useful for determining what parts of my site are most popular.
 
 # Github Landing
