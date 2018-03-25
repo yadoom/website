@@ -29,4 +29,5 @@ header h1 { display: inline-block; font-size: 100px; font-family: "Bungee Shade"
 @media only screen and (max-width: 990px) { .jumbotron { margin-top: 200px; } }  
 @media only screen and (max-width: 600px) { header h1  { font-size: 70px;   }
                                             .jumbotron { margin-top: 120px; } }     
-@media only screen and (max-width: 550px) { .jumbotron { margin-top: 70px; } }                           
+@media only screen and (max-width: 550px) { .jumbotron { margin-top: 70px; }
+                                            header h1 { font-size: 60px; } }                           
