@@ -11,7 +11,7 @@ Generally, most pages are optimized for desktop and mobile displays. It's been t
 I have a bit of JS on all of my pages that report usage analytics. It logs all kinds of information: usage dates/times/durations, user agents, IP addresses and so on. There's nothing particularly identifying, but I use it to get an idea of how many hits I'm getting when I send out resumes with my portfolio linked on them. It's also useful for determining what parts of my site are most popular.
 
 # Github Landing
-The pulsing Github logo button on the home page leads to a portal for my Github. Since I have a lot of code from school projects I'd like to show case, I had to make them all private. In order to make them accessible for select viewers, I included a page that links to a Github login, which redirects to my profile after credentials to guest dummy collaborator are entered. I share the login on request.
+The pulsing Github logo button on the home page leads to a portal for my Github. Since I have a lot of code from school projects I'd like to show case, I had to make them all private. In order to make them accessible for select viewers, I included a page that links to a Github login, which redirects to my profile after credentials to a guest dummy collaborator are entered. I share the login on request.
 
 # Blog
 I make posts about once or twice a quarter as a rolling log of what's going on in my courses and what projects I'm working on. They also serve as part of the documentation for some of the projects.
